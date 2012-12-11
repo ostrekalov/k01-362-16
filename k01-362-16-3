@@ -1,0 +1,41 @@
+#!/bin/bash
+echo "Стрекалов Олег"
+echo "Программа выполняет операцию над файлом"
+echo "Начать? (y/n): ";
+a='y'
+while [ $a = "y" -o $a = "Y" ]; do
+read a;
+if [ $a = "y" -o $a = "Y" ]; then
+echo "Выберите тип действия:"
+echo "1) создать"
+echo "2) удалить "
+echo "3) переместить"
+read TIP
+if [ "$TIP" = "1" -o "$TIP" = "2" -o "$TIP" = "3" ]; then
+echo "Введите имя файла:"
+read FILENAME
+echo "Введите имя директории(начальной):"
+read DIRECTORYNAME
+if [ "$TIP" = "1" ]; then
+touch $DIRECTORYNAME/$FILENAME
+echo "Файл создан"
+elif [ "$TIP" = "2" ]; then
+rm $FILENAME
+echo "Файл удален"
+elif [ "$TIP" = "3" ]; then
+echo "Введите имя директории(конечной):"
+read DIRECTORYNAME2
+mv $DIRECTORYNAME/$FILENAME $DIRECTORYNAME2
+echo "Файл перемещен"
+fi
+else
+echo "Такого пункта не существует"
+fi
+echo "Повторить? (y/n): ";
+a=y
+elif [ $a = "n" -o $a = "N" ]; then
+echo "Завершено"
+else echo "Ошибка! Введите y или n:"
+a=y
+fi
+done
